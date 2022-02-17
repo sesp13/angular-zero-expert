@@ -1,8 +1,1 @@
-
-
-console.log('Hola Mundo!');
-
-/*
-    ===== Código de TypeScript =====
-*/
-
+console.log("Hello World!");
