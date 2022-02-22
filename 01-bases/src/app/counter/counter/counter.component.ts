@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 
 @Component({
-  selector: 'app-contador',
+  selector: 'app-counter',
   template: `
     <h1>{{ title }}</h1>
     <h3>La base es <strong>{{ base }}</strong></h3>
@@ -10,7 +10,7 @@ import { Component } from '@angular/core'
     <button (click)="acumular(-base)"> - {{ base }}</button>
   `
 })
-export class ContadorComponent {
+export class CounterComponent {
   title: string = 'Contador App';
 
   base = 555;
