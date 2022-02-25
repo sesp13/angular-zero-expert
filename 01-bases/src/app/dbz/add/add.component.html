@@ -1,0 +1,10 @@
+<h3>Add: {{ newHero.name }}</h3> 
+<hr>
+
+<form action="" (ngSubmit)="add()">
+  <input type="text" placeholder="Name" [(ngModel)]="newHero.name" name="name">
+  <input type="number" placeholder="Power" [(ngModel)]="newHero.power" name="power">
+  <button>
+    Add
+  </button>
+</form>
