@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class GifsService {
-
-  private apiKey: string = '';
+  // Requires the secret environment file setted
+  private apiKey: string = environment?.gifToken ?? "";
   private _historial: string[] = [];
 
   get historial(): string[] {
@@ -25,5 +25,5 @@ export class GifsService {
     }
   }
 
-  constructor() { }
+  constructor() {}
 }
