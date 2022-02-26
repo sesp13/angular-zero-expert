@@ -1,11 +1,11 @@
-  <!-- sidebar -->
-  <aside class="bg-dark p-3" id="sidebar">
-    <h3 class="text-light">GifsApp</h3>
-    <hr class="text-white">
-    <div class="list-group list-reset">
-      <a *ngFor="let item of historial" href="#" class="list-group-item list-group-item-action">
-        {{ item | titlecase }}
-      </a>
-    </div>
-  </aside>
-  <!-- end sidebar -->
+<!-- sidebar -->
+<aside class="bg-dark p-3" id="sidebar">
+  <h3 class="text-light">GifsApp</h3>
+  <hr class="text-white">
+  <div class="list-group list-reset">
+    <a *ngFor="let item of historial" (click)="search(item)" href="#" class="list-group-item list-group-item-action">
+      {{ item | titlecase }}
+    </a>
+  </div>
+</aside>
+<!-- end sidebar -->
