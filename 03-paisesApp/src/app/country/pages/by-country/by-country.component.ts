@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { CountryService } from '../../services/country.service';
 
 @Component({
   selector: 'app-by-country',
@@ -6,11 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class ByCountryComponent implements OnInit {
+export class ByCountryComponent {
 
-  constructor() { }
+  term: string = '';
+
+  constructor(private countryService: CountryService) { }
 
   ngOnInit(): void {
+  }
+
+  search() {
+    
   }
 
 }
