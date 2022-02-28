@@ -1,13 +1,13 @@
 <h2>Searchs</h2>
 <hr>
 <ul class="list-group">
-  <li class="list-group-item">
+  <li class="list-group-item" [routerLink]="''" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
     Search Country
   </li>
-  <li class="list-group-item">
+  <li class="list-group-item" [routerLink]="'region'" routerLinkActive="active">
     By Region
   </li>
-  <li class="list-group-item">
+  <li class="list-group-item" [routerLink]="'capital'" routerLinkActive="active">
     By Capital
   </li>
 </ul>
