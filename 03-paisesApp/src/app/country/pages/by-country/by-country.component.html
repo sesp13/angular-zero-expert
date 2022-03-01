@@ -10,11 +10,11 @@
 
 <hr>
 
-<div class="alert alert-danger">
-  Not information found with the term 123
+<div class="alert alert-danger" *ngIf="hasError">
+  Not information found with the term {{ term }}
 </div>
 
-<div class="row">
+<div class="row" *ngIf="countries.length > 0">
   <div class="col">
     <table class="table table-hover">
       <thead>
@@ -35,13 +35,21 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Flag</td>
-          <td>Name</td>
-          <td>123456789</td>
+        <tr *ngFor="let country of countries; let i = index">
           <td>
-            See...
+            {{ i + 1 }}
+          </td>
+          <td>
+            <img [src]="country.flag" alt="" class="small-flag">
+          </td>
+          <td>
+            {{ country.name }}
+          </td>
+          <td>
+            {{ country.population | number }}
+          </td>
+          <td>
+            <a [routerLink]="['/country', country.alpha2Code]"> See </a>
           </td>
         </tr>
       </tbody>

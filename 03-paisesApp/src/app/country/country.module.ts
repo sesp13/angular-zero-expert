@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 // My components
 import { ByCapitalComponent } from './pages/by-capital/by-capital.component';
@@ -20,6 +21,7 @@ import { SeeCountryComponent } from './pages/see-country/see-country.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
   ],
   exports: [
