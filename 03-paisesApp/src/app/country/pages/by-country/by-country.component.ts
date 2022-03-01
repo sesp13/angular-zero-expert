@@ -31,7 +31,5 @@ export class ByCountryComponent {
     );
   }
 
-  suggerences(term: string) {
-   
-  }
+  suggerences(term: string) {}
 }
