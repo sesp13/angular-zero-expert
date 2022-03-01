@@ -5,28 +5,29 @@ import { CountryService } from '../../services/country.service';
 @Component({
   selector: 'app-by-country',
   templateUrl: './by-country.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class ByCountryComponent {
-
   term: string = '';
   hasError: boolean = false;
   countries: Country[] = [];
 
-  constructor(private countryService: CountryService) { }
+  constructor(private countryService: CountryService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  search() {
+  search(term: string) {
+    // Set local propertie
+    this.term = term;
     this.hasError = false;
-    this.countryService.searchCountry(this.term).subscribe((countries: Country[]) => {
-      this.countries = countries;
-    }, err => {
-      this.hasError = true;
-      this.countries = [];
-    });
+    this.countryService.searchCountry(this.term).subscribe(
+      (countries: Country[]) => {
+        this.countries = countries;
+      },
+      (err) => {
+        this.hasError = true;
+        this.countries = [];
+      }
+    );
   }
-
 }
