@@ -1,1 +1,26 @@
-<p>by-region works!</p>
+<div class="animate__animated animate__fadeIn animate__faster">
+  <h3>
+    Search by Region <small>{{ activeRegion | titlecase }}</small>
+  </h3>
+  <hr />
+
+  <h5>Select a region</h5>
+
+  <div class="row">
+    <div class="col">
+      <button
+        [class]="geActiveClass(region)"
+        *ngFor="let region of regions"
+        (click)="turnOnRegion(region)"
+      >
+        {{ region | titlecase }}
+      </button>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="countries.length > 0">
+    <div class="col">
+      <app-country-table [countries]="countries"></app-country-table>
+    </div>
+  </div>
+</div>

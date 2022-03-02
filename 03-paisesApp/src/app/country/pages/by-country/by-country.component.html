@@ -1,23 +1,41 @@
-<h2>By Country</h2>
-<hr />
-<div class="row">
-  <div class="col">
-    <app-country-input
-      (onEnter)="search($event)"
-      (onDebounce)="suggerences($event)"
-      [placeholder]="'Search Country'"
-    ></app-country-input>
+<div class="animate__animated animate__fadeIn animate__faster">
+  <h2>By Country</h2>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <app-country-input
+        (onEnter)="search($event)"
+        (onDebounce)="suggerences($event)"
+        [placeholder]="'Search Country'"
+      ></app-country-input>
+    </div>
   </div>
-</div>
 
-<hr />
+  <ul class="list-group" *ngIf="showSuggerences">
+    <li
+      *ngFor="let country of suggestedCountries"
+      class="list-group-item list-group-item-action"
+    >
+      <a class="nav-link" [routerLink]="['/country', country.alpha2Code]">
+        {{ country.name }}
+      </a>
+    </li>
+    <li class="list-group-item list-group-item-action" (click)="searchSuggested()">
+      <a class="nav-link">
+        Search: {{ term }}
+      </a>
+    </li>
+  </ul>
 
-<div class="alert alert-danger" *ngIf="hasError">
-  Not information found with the term {{ term }}
-</div>
+  <hr />
 
-<div class="row" *ngIf="countries.length > 0">
-  <div class="col">
-    <app-country-table [countries]="countries"></app-country-table>
+  <div class="alert alert-danger" *ngIf="hasError">
+    Not information found with the term {{ term }}
+  </div>
+
+  <div class="row" *ngIf="countries.length > 0">
+    <div class="col">
+      <app-country-table [countries]="countries"></app-country-table>
+    </div>
   </div>
 </div>
