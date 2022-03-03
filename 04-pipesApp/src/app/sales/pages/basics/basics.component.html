@@ -1,1 +1,97 @@
-<p>basics works!</p>
+<div class="text-layout">
+  <h1>Basic Pipes</h1>
+  <p>Pipes included in angular - Usually in CommonModule</p>
+  <div class="grid">
+    <div class="col-4">
+      <p-card header="Uppercase" [subheader]="nameLower | uppercase">
+        {{ nameLower | uppercase }}
+      </p-card>
+    </div>
+    <div class="col-4">
+      <p-card header="Lowercase" [subheader]="nameLower | lowercase">
+        {{ nameLower | lowercase }}
+      </p-card>
+    </div>
+    <div class="col-4">
+      <p-card header="TitleCase" [subheader]="fullName | titlecase">
+        {{ fullName | titlecase }}
+      </p-card>
+    </div>
+  </div>
+</div>
+
+<div class="text-layout">
+  <h1>Date Pipe</h1>
+  <p>Pipe to format Dates</p>
+</div>
+
+<div class="grid">
+  <div class="col-6">
+    <p-card header="Definitions">
+      <ul>
+        <li>dateExpr</li>
+        <li>dateExpr | date</li>
+        <li>dateExpr | date:'short'</li>
+        <li>dateExpr | date:'long'</li>
+        <li>dateExpr | date:'MMMM'</li>
+        <li>dateExpr | date:'MMMM dd yyyy'</li>
+        <li>dateExpr with cutom params</li>
+      </ul>
+
+      <hr />
+      <h3>Change timezones and locales</h3>
+      <ul>
+        <li>
+          date expr | date: "long":"GMT-6"
+        </li>
+        <li>
+          date expr | date: "long":"GMT-4"
+        </li>
+        <li>
+          date expr | date: "long":"en"
+        </li>
+      </ul>
+    </p-card>
+  </div>
+  <div class="col-6">
+    <p-card header="Examples">
+      <ul>
+        <li>
+          {{ today }}
+        </li>
+        <li>
+          {{ today | date }}
+        </li>
+        <li>
+          {{ today | date: "short" }}
+        </li>
+        <li>
+          {{ today | date: "long" }}
+        </li>
+        <li>
+          {{ today | date: "MMMM" }}
+        </li>
+        <li>
+          {{ today | date: "MMMM dd yyyy" }}
+        </li>
+        <li>
+          {{ today | date: "dd LL yyy GGGG HH mm ss zz" }}
+        </li>
+      </ul>
+
+      <hr />
+      <h3>Change timezones and locales</h3>
+      <ul>
+        <li>
+          {{ today | date: "long":"GMT-6" }}
+        </li>
+        <li>
+          {{ today | date: "long":"GMT-4" }}
+        </li>
+        <li>
+          {{ today | date: "long":"":"fr" }}
+        </li>
+      </ul>
+    </p-card>
+  </div>
+</div>

@@ -17,7 +17,7 @@ const routes: Routes = [
     component: NumbersComponent,
   },
   {
-    path: 'noCommon',
+    path: 'unCommon',
     component: NoCommonComponent,
   },
   {

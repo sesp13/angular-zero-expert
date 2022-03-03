@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 // Custom modules
 import { AppRoutingModule } from './app-routing.module';
@@ -8,10 +8,22 @@ import { SalesModule } from './sales/sales.module';
 
 import { AppComponent } from './app.component';
 
+// Change locale
+import localCO from '@angular/common/locales/es-CO';
+import localFr from '@angular/common/locales/fr';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localCO);
+registerLocaleData(localFr);
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, SalesModule, SharedModule],
-  providers: [],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'es-CO'
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
