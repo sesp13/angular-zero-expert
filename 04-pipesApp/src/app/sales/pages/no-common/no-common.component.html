@@ -5,13 +5,66 @@
 
 <div class="grid">
   <div class="col-12 md:col-6">
-    <p-fieldset legend="Header" legend="i18nSelect Pipe" [toggleable]="true">
-      Content
-  </p-fieldset>
+    <p-fieldset legend="i18nSelect Pipe" [toggleable]="true">
+      <p>{{ gender | i18nSelect: genderMap }} is {{ name }}</p>
+      <button pButton (click)="changeName()" class="p-button-danger">
+        Change Person
+      </button>
+    </p-fieldset>
   </div>
+
   <div class="col-12 md:col-6">
-    <p-fieldset legend="Header" legend="i18Plural Pipe" [toggleable]="true">
-      Content
-  </p-fieldset>
+    <p-fieldset legend="i18Plural Pipe" [toggleable]="true">
+      <p>
+        {{ clients.length | i18nPlural: clientsMap }}
+      </p>
+      <button pButton (click)="removeClient()" class="p-button-warning">
+        Delete client
+      </button>
+    </p-fieldset>
+  </div>
+
+  <div class="col-12 md:col-6">
+    <p-fieldset legend="Slice Pipe" [toggleable]="true">
+      <p>Original</p>
+      <pre>{{ clients }}</pre>
+      <p>Slice 0:2</p>
+      <pre>{{ clients | slice: 0:2 }}</pre>
+      <p>Slice 1:3</p>
+      <pre>{{ clients | slice: 1:3 }}</pre>
+      <p>Slice 3:3</p>
+      <pre>{{ clients | slice: 3:3 }}</pre>
+      <p>Slice for name {{ name }} 0:4</p>
+      <pre>{{ name | slice: 0:4 }}</pre>
+    </p-fieldset>
+  </div>
+
+  <div class="col-12 md:col-6">
+    <p-fieldset legend="JSON Pipe" [toggleable]="true">
+      <pre>{{ heroes | json }}</pre>
+    </p-fieldset>
+  </div>
+
+  <div class="col-12 md:col-6">
+    <p-fieldset legend="Key Value Pipe" [toggleable]="true">
+      <ul>
+        <li *ngFor="let item of person | keyvalue">
+          <b> key: {{ item.key }} - value: {{ item.value }}</b>
+        </li>
+      </ul>
+    </p-fieldset>
+  </div>
+
+  <div class="col-12 md:col-6">
+    <p-fieldset legend="Async Pipe" [toggleable]="true">
+      <p *ngIf="!(myObservable | async)">Solving Observable</p>
+      <p>
+        {{ myObservable | async }}
+      </p>
+      <p *ngIf="!(promiseValue | async)">Solving promise</p>
+      <p>
+        {{ promiseValue | async }}
+      </p>
+    </p-fieldset>
   </div>
 </div>
