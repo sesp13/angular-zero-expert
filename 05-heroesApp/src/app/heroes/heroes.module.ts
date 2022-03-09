@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Modules
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeroesRoutingModule } from './heroes-routing.module';
+import { MaterialModule } from '../material/material.module';
 
 // Components
 import { AddComponent } from './pages/add/add.component';
@@ -19,6 +21,11 @@ import { ListComponent } from './pages/list/list.component';
     HomeComponent,
     ListComponent,
   ],
-  imports: [CommonModule, HeroesRoutingModule],
+  imports: [
+    CommonModule,
+    FlexLayoutModule,
+    HeroesRoutingModule,
+    MaterialModule,
+  ],
 })
 export class HeroesModule {}
