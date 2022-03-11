@@ -1,1 +1,87 @@
-<p>add works!</p>
+<h1>New hero <small>asd</small></h1>
+
+<div fxLayout.xs="column" fxLayout="row" fxLayoutGap="40px">
+  <div fxLayout="column" fxFlex="50">
+    <div fxLayout.xs="column" fxLayout="row" fxLayoutGap="20px">
+      <mat-form-field fxFlex="100">
+        <mat-label>Super Hero</mat-label>
+        <input
+          type="text"
+          matInput
+          required
+          [(ngModel)]="hero.superhero"
+          name="superhero"
+        />
+      </mat-form-field>
+
+      <mat-form-field fxFlex="100">
+        <mat-label>Alter Ego</mat-label>
+        <input
+          required
+          type="text"
+          matInput
+          required
+          [(ngModel)]="hero.alter_ego"
+          name="alter_ego"
+        />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field fxFlex="100">
+      <mat-label>First appereace</mat-label>
+      <input
+        type="text"
+        matInput
+        required
+        [(ngModel)]="hero.first_appearance"
+        name="first_appearance"
+      />
+    </mat-form-field>
+
+    <mat-form-field fxFlex="100">
+      <mat-label>Characters</mat-label>
+      <input
+        type="text"
+        matInput
+        required
+        [(ngModel)]="hero.characters"
+        name="characters"
+      />
+    </mat-form-field>
+
+    <mat-form-field fxFlex="100">
+      <mat-label>Creator</mat-label>
+      <mat-select [(ngModel)]="hero.publisher" name="publisher" required>
+        <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">
+          {{ publisher.desc }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="100">
+      <mat-label>Photo Url</mat-label>
+      <input
+        type="text"
+        matInput
+        required
+        [(ngModel)]="hero.alt_img"
+        name="alt_img"
+      />
+    </mat-form-field>
+
+    <br />
+
+    <button mat-raised-button color="primary" (click)="save()">
+      <mat-icon>edit</mat-icon>
+      Save
+    </button>
+  </div>
+
+  <div fxFlex="50">
+    <img [src]="hero | heroImage" alt="Another fucking image from internet" />
+
+    <div>
+      <pre>{{ hero | json }}</pre>
+    </div>
+  </div>
+</div>
