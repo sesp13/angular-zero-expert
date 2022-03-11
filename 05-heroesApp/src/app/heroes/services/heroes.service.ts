@@ -9,7 +9,7 @@ import { Hero } from '../interfaces/heroes.interface';
 })
 export class HeroesService {
   private baseUrl = environment.baseUrl;
-  baseUrlHeroes: string = `${this.baseUrl}/heroes`;
+  private baseUrlHeroes: string = `${this.baseUrl}/heroes`;
 
   constructor(private http: HttpClient) {}
 
@@ -19,5 +19,11 @@ export class HeroesService {
 
   getHeroById(id: string): Observable<Hero> {
     return this.http.get<Hero>(`${this.baseUrlHeroes}/${id}`);
+  }
+
+  getSugerences(query: string): Observable<Hero[]> {
+    return this.http.get<Hero[]>(
+      `${this.baseUrlHeroes}/?q=${query}&_limit=5`
+    );
   }
 }
