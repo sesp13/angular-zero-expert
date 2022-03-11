@@ -1,5 +1,11 @@
 # HerosApp
 
+## Important things for dev mode
+
+This project needs a backend located in the folder `heroes-server`, in this folder please run the command `json-server --watch db.json` rembember to do this you must have installed globally the packagae  `json server` 
+
+---
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.3.
 
 ## Development server
