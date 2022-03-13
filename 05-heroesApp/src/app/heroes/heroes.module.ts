@@ -17,6 +17,7 @@ import { HeroComponent } from './pages/hero/hero.component';
 import { HeroCardComponent } from './components/hero-card/hero-card.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListComponent } from './pages/list/list.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ListComponent } from './pages/list/list.component';
     HeroCardComponent,
     HomeComponent,
     ListComponent,
+    ConfirmComponent,
   ],
   imports: [
     CommonModule,

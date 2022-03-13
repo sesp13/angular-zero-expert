@@ -168,13 +168,13 @@
       "characters": "Norrin Radd"
     },
     {
-      "superhero": "Uriel",
-      "alter_ego": "",
+      "superhero": "SpiderGwen",
+      "alter_ego": "Gwen Stacy",
       "characters": "",
-      "first_appearance": "",
-      "publisher": "DC Comics",
-      "alt_img": "",
-      "id": "kpF_WwD"
+      "first_appearance": "Comic",
+      "publisher": "Marvel Comics",
+      "alt_img": "https://i.pinimg.com/564x/02/e3/3d/02e33d7493a6e60029e7d5e80dc4536e.jpg",
+      "id": "lAuPnxW"
     }
   ]
 }

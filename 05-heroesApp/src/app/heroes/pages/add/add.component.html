@@ -1,4 +1,4 @@
-<h1>New hero <small>asd</small></h1>
+<h1>{{ title | titlecase }}</h1>
 
 <div fxLayout.xs="column" fxLayout="row" fxLayoutGap="40px">
   <div fxLayout="column" fxFlex="50">
@@ -70,18 +70,20 @@
     </mat-form-field>
 
     <br />
-
-    <button mat-raised-button color="primary" (click)="save()">
-      <mat-icon>edit</mat-icon>
-      Save
-    </button>
+    
+    <div>
+      <button mat-raised-button color="primary" (click)="save()" class="action-button">
+        <mat-icon>edit</mat-icon>
+        Save
+      </button>
+      <button mat-raised-button color="warn" (click)="delete()" class="action-button" *ngIf="hero?.id">
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
+    </div>
   </div>
 
   <div fxFlex="50">
-    <img [src]="hero | heroImage" alt="Another fucking image from internet" />
-
-    <div>
-      <pre>{{ hero | json }}</pre>
-    </div>
+    <img [src]="hero | heroImage" />
   </div>
 </div>
