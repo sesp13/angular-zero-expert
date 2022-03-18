@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col">
-    <form (ngSubmit)="save(myForm)" #myForm="ngForm" autocomplete="off">
+    <form (ngSubmit)="save()" #myForm="ngForm" autocomplete="off">
       <div class="mb-3 row">
         <label class="col-sm-3 col-form-label"> Product </label>
         <div class="col-sm-9">
@@ -16,13 +16,7 @@
             required
             minlength="3"
           />
-          <span
-            class="form-text text-danger"
-            *ngIf="
-              myForm.controls.product?.invalid &&
-              myForm.controls.product?.touched
-            "
-          >
+          <span class="form-text text-danger" *ngIf="invalidProductName()">
             Must have 3 letters
           </span>
         </div>
@@ -39,8 +33,12 @@
             name="price"
             required
           />
+          <span class="form-text text-danger" *ngIf="invalidPrice()">
+            The price must be greater or equal to zero
+          </span>
         </div>
       </div>
+
       <div class="mb-3 row">
         <label class="col-sm-3 col-form-label"> Quantity </label>
         <div class="col-sm-9">
@@ -49,13 +47,22 @@
             class="form-control"
             placeholder="Product quantity"
             ngModel
+            customMin
+            [minValue]="0"
             name="quantity"
+            required
           />
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <button type="submit" class="btn btn-primary float-end">Save</button>
+          <button
+            type="submit"
+            class="btn btn-primary float-end"
+            [disabled]="myForm.invalid"
+          >
+            Save
+          </button>
         </div>
       </div>
     </form>
@@ -72,5 +79,7 @@
     <pre>{{ myForm.pristine | json }}</pre>
     <span>Touched</span>
     <pre>{{ myForm.touched | json }}</pre>
+    <span>Custom Directive</span>
+    <pre>{{ myForm?.controls?.quantity?.errors| json }}</pre>
   </div>
 </div>
