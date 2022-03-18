@@ -1,6 +1,6 @@
 <h2>Reactive: Switches</h2>
 <hr />
-<form>
+<form [formGroup]="myForm" (ngSubmit)="save()">
   <!-- radio -->
   <div class="row mb-3">
     <label class="col-sm-3 col-form-label">Gender</label>
@@ -9,8 +9,9 @@
         <input
           class="form-check-input"
           type="radio"
-          name="radiusGender"
           id="male-id"
+          formControlName="gender"
+          value="M"
         />
         <label class="form-check-label" for="male-id"> Male </label>
       </div>
@@ -18,8 +19,9 @@
         <input
           class="form-check-input"
           type="radio"
-          name="radiusGender"
           id="female-id"
+          formControlName="gender"
+          value="F"
         />
         <label class="form-check-label" for="female-id"> Female </label>
       </div>
@@ -36,7 +38,7 @@
           type="checkbox"
           role="switch"
           id="notificationsSwitch"
-          name="notifications"
+          formControlName="notifications"
         />
         <label class="form-check-label" for="notificationsSwitch"
           >I want to receive notifications</label
@@ -55,7 +57,7 @@
           type="checkbox"
           value=""
           id="flexCheckDefault"
-          name="terms"
+          formControlName="conditions"
         />
         <label class="form-check-label" for="flexCheckDefault">
           Terms and conditions
@@ -71,7 +73,7 @@
   </div>
 </form>
 
-<!-- <h5>Forms value</h5>
+<h5>Forms value</h5>
 <pre>{{ myForm.value | json }}</pre>
 
 <h5>Person</h5>
@@ -80,5 +82,5 @@
 <h5>Valid</h5>
 <pre>{{ myForm.valid }}</pre>
 
-<h5>Conditions</h5>
+<!-- <h5>Conditions</h5>
 <pre>{{ myForm?.controls?.terms?.errors | json }}</pre> -->
