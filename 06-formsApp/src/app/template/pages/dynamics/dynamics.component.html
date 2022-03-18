@@ -1,1 +1,87 @@
-<p>dynamics works!</p>
+<h2>Template: Dynamics</h2>
+<hr />
+<form (ngSubmit)="save()" autocomplete="off" #myForm="ngForm">
+  <!-- name -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Name</label>
+    <div class="col-sm-9">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Person name"
+        [ngModel]="person.name"
+        name="name"
+        required
+      />
+      <span class="form-text text-danger" *ngIf="invalidName()"
+        >This field is required</span
+      >
+    </div>
+  </div>
+
+  <!-- add -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Add</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Add favorite"
+          [(ngModel)]="newGame"
+          name="newGame"
+          (keyup.enter)="addFavorite()"
+        />
+        <button
+          class="btn btn-outline-primary"
+          type="button"
+          (click)="addFavorite()"
+        >
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Favorite games -->
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Favorite games</label>
+    <div class="col-sm-9">
+      <div
+        class="input-group mb-2"
+        *ngFor="let favorite of person.favorites; let i = index"
+      >
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="favorite.name"
+          name="game_{{ i }}"
+          required
+        />
+        <button
+          class="btn btn-danger"
+          type="button"
+          (click)="deleteFavorite(i)"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <button
+        type="button"
+        class="btn btn-primary float-end"
+        [disabled]="myForm.invalid"
+        (click)="save()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</form>
+
+<span>Person</span>
+<pre>{{ person | json }}</pre>
