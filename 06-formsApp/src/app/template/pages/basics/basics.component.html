@@ -29,7 +29,7 @@
             type="number"
             class="form-control"
             placeholder="Product price"
-            ngModel
+            [ngModel]="initForm.price"
             name="price"
             required
           />
@@ -46,7 +46,7 @@
             type="number"
             class="form-control"
             placeholder="Product quantity"
-            ngModel
+            [ngModel]="initForm.quantity"
             customMin
             [minValue]="0"
             name="quantity"
@@ -80,6 +80,6 @@
     <span>Touched</span>
     <pre>{{ myForm.touched | json }}</pre>
     <span>Custom Directive</span>
-    <pre>{{ myForm?.controls?.quantity?.errors| json }}</pre>
+    <pre>{{ myForm?.controls?.quantity?.errors | json }}</pre>
   </div>
 </div>

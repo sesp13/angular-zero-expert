@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ReactiveRoutingModule } from './reactive-routing.module';
-import { BasicsComponent } from './basics/basics.component';
-import { DynamicsComponent } from './dynamics/dynamics.component';
-import { SwitchesComponent } from './switches/switches.component';
+import { BasicsComponent } from './pages/basics/basics.component';
+import { DynamicsComponent } from './pages/dynamics/dynamics.component';
+import { SwitchesComponent } from './pages/switches/switches.component';
 
 
 @NgModule({
