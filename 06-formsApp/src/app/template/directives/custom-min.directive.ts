@@ -14,7 +14,7 @@ import { FormControl, NG_VALIDATORS, Validator } from '@angular/forms';
 export class CustomMinDirective implements Validator {
   @Input() minValue?: number;
   constructor() {
-    console.log('Directive', this.minValue);
+    // console.log('Directive', this.minValue);
   }
 
   validate(control: FormControl) {

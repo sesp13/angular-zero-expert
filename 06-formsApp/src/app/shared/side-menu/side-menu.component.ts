@@ -27,6 +27,7 @@ export class SideMenuComponent {
       route: 'template/switches',
     },
   ];
+
   reactiveMenu: MenuItem[] = [
     {
       text: 'Basics',
@@ -39,6 +40,17 @@ export class SideMenuComponent {
     {
       text: 'Switches',
       route: 'reactive/switches',
+    },
+  ];
+
+  authMenu: MenuItem[] = [
+    {
+      text: 'Register',
+      route: 'auth/register',
+    },
+    {
+      text: 'Login',
+      route: 'auth/login',
     },
   ];
 }
