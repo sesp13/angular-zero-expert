@@ -1,0 +1,7 @@
+<p>{{ name }}</p>
+<button (click)="save()">My button</button>
+<br />
+<input type="text" [(ngModel)]="name" />
+<br>
+<br>
+<app-show-name [name]="name"></app-show-name>
