@@ -1,1 +1,17 @@
-<p>double-bar works!</p>
+<h1>Double bars</h1>
+<hr />
+<div class="row">
+  <div class="col-md-6">
+    <app-bar-graph
+      [horizontal]="true"
+      [labels]="providersLabels"
+      [datasets]="productsData"
+    ></app-bar-graph>
+  </div>
+  <div class="col-md-6">
+    <app-bar-graph
+      [labels]="providersLabels"
+      [datasets]="providersData"
+    ></app-bar-graph>
+  </div>
+</div>
