@@ -9,7 +9,6 @@ import { DoubleBarComponent } from './pages/double-bar/double-bar.component';
 import { DonutComponent } from './pages/donut/donut.component';
 import { DonutHttpComponent } from './pages/donut-http/donut-http.component';
 import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
-import { GraphsComponent } from './services/graphs/graphs.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,6 @@ import { GraphsComponent } from './services/graphs/graphs.component';
     DonutComponent,
     DonutHttpComponent,
     BarGraphComponent,
-    GraphsComponent,
   ],
   imports: [CommonModule, GraphsRoutingModule, NgChartsModule],
 })
