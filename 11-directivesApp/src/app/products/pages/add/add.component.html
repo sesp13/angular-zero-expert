@@ -1,0 +1,30 @@
+<h1 class="mt-5">Add product</h1>
+<hr />
+<form [formGroup]="myForm">
+  <div class="row g-3 align-items-center mb-3">
+    <div class="col-auto">
+      <label class="col-form-label">Name: </label>
+    </div>
+    <div class="col-auto">
+      <input type="text" class="form-control" formControlName="name" />
+    </div>
+    <div class="col-auto">
+      <span
+        error-msg
+        color="red"
+        message="This field is required from a directive"
+        *ngIf="hasError('name')"
+      >
+      </span>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <button class="btn btn-primary">Save</button>
+    </div>
+  </div>
+</form>
+
+<h3 class="mt-5">Form</h3>
+<pre>Value: {{ myForm.value | json }}</pre>
+<pre>Valid: {{ myForm.valid | json }}</pre>
