@@ -1,4 +1,5 @@
 <h1 class="mt-5">Add product</h1>
+<small>{{ text1 }}</small>
 <hr />
 <form [formGroup]="myForm">
   <div class="row g-3 align-items-center mb-3">
@@ -11,16 +12,20 @@
     <div class="col-auto">
       <span
         error-msg
-        color="red"
-        message="This field is required from a directive"
-        *ngIf="hasError('name')"
+        [color]="color"
+        [message]="text1"
+        [valid]="hasError('name')"
       >
       </span>
+      <span error-msg class="ms-2" [valid]="hasError('name')"> </span>
     </div>
   </div>
   <div class="row mt-3">
     <div class="col">
-      <button class="btn btn-primary">Save</button>
+      <button class="btn btn-primary" (click)="changeName()">Save</button>
+      <button class="btn btn-primary ms-2" (click)="changeColor()">
+        Change color
+      </button>
     </div>
   </div>
 </form>
@@ -28,3 +33,9 @@
 <h3 class="mt-5">Form</h3>
 <pre>Value: {{ myForm.value | json }}</pre>
 <pre>Valid: {{ myForm.valid | json }}</pre>
+
+<div class="row mt-2" *customIf="myForm.valid">
+  <div class="col">
+    <div class="alert alert-primary">Everything OK</div>
+  </div>
+</div>
