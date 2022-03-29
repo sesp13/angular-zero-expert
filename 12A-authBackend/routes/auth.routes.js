@@ -5,6 +5,7 @@ const {
   userLogin,
   revalidateToken,
 } = require('../controllers/auth.controller');
+const { fieldValidator } = require('../middlewares/fieldValidator.middleware');
 
 const router = Router();
 
@@ -15,6 +16,7 @@ router.post(
     check('name', 'name field is required').notEmpty(),
     check('email', 'email is required').isEmail(),
     check('password', 'password is required').isLength({ min: 6 }),
+    fieldValidator,
   ],
   createUser
 );
@@ -25,6 +27,7 @@ router.post(
   [
     check('email', 'email is required').isEmail(),
     check('password', 'password is required').isLength({ min: 6 }),
+    fieldValidator,
   ],
   userLogin
 );

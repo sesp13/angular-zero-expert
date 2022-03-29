@@ -1,9 +1,11 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const { dbConnection } = require('./db/config');
 // Create server
 const app = express();
-
+// ---- Data base ---
+dbConnection();
 
 // -------- Middlewares ------------
 // Cors
@@ -17,7 +19,6 @@ app.use(express.static('public'));
 
 // Routes
 app.use('/api/auth', require('./routes/auth.routes'));
-
 
 // PORT const
 const PORT = process.env.PORT || 9000;
