@@ -42,13 +42,54 @@ const createUser = async (req = request, res = response) => {
   }
 };
 
-const userLogin = (req = request, res = response) => {
-  const { email, password } = req.body;
-  return res.json({ ok: true, msg: 'User login' });
+const userLogin = async (req = request, res = response) => {
+  try {
+    const { email, password } = req.body;
+
+    // Check email
+    let dbUser = await User.findOne({ email });
+    if (!dbUser) {
+      return res.status(400).json({
+        ok: false,
+        msg: "The user doesn't exists",
+      });
+    }
+
+    // Check password
+    const validPassword = bcrypt.compareSync(password, dbUser.password);
+    if (!validPassword) {
+      return res.status(400).json({
+        ok: false,
+        msg: 'Invalid password',
+      });
+    }
+
+    // Generate JWT
+    const token = await generateJWT(dbUser.id, dbUser.name);
+
+    // Generate success response
+    return res
+      .status(200)
+      .json({ ok: true, uid: dbUser.id, name: dbUser.name, token });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      pk: false,
+      msg: 'Please talk with the admin',
+    });
+  }
 };
 
-const revalidateToken = (req, res) => {
-  return res.json({ ok: true, msg: 'Renew token' });
+const revalidateToken = async (req = request, res = response) => {
+  try {
+    // Get variables from the request
+    const { uid, name } = req;
+    // Generate new token
+    const token = await generateJWT(uid, name);
+    return res.json({ ok: true, uid, name, msg: 'Renew token', token });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = {
