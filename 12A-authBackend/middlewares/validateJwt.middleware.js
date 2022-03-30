@@ -12,10 +12,11 @@ const validateJWT = (req = request, res = response, next) => {
   }
   try {
     // Validate token
-    const { uid, name } = jsonwebtoken.verify(token, process.env.JWTKEY);
+    const { uid, name, email } = jsonwebtoken.verify(token, process.env.JWTKEY);
     // Pass variables
     req.uid = uid;
     req.name = name;
+    req.email = email;
     next();
   } catch (error) {
     return res.status(401).json({
