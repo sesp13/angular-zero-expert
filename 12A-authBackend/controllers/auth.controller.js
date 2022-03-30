@@ -27,7 +27,7 @@ const createUser = async (req = request, res = response) => {
     await dbUser.save();
 
     // Generate JWT
-    const token = await generateJWT(dbUser.id, dbUser.name, dbUser.email);
+    const token = await generateJWT(dbUser.id);
 
     // Generate success response
     return res.status(201).json({
@@ -51,7 +51,7 @@ const userLogin = async (req = request, res = response) => {
     const { email, password } = req.body;
 
     // Check email
-    let dbUser = await User.findOne({ email });
+    const dbUser = await User.findOne({ email });
     if (!dbUser) {
       return res.status(400).json({
         ok: false,
@@ -69,7 +69,7 @@ const userLogin = async (req = request, res = response) => {
     }
 
     // Generate JWT
-    const token = await generateJWT(dbUser.id, dbUser.name, dbUser.email);
+    const token = await generateJWT(dbUser.id);
 
     // Generate success response
     return res.status(200).json({
@@ -91,10 +91,19 @@ const userLogin = async (req = request, res = response) => {
 const revalidateToken = async (req = request, res = response) => {
   try {
     // Get variables from the request
-    const { uid, name, email } = req;
+    const { uid } = req;
+    // Get user
+    const dbUser = await User.findById(uid);
     // Generate new token
-    const token = await generateJWT(uid, name, email);
-    return res.json({ ok: true, uid, name, email, msg: 'Renew token', token });
+    const token = await generateJWT(uid);
+    return res.json({
+      ok: true,
+      uid,
+      name: dbUser.name,
+      email: dbUser.email,
+      msg: 'Renew token',
+      token,
+    });
   } catch (error) {
     console.log(error);
   }
