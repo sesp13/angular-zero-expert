@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { dbConnection } = require('./db/config');
+const path = require('path');
+
 // Create server
 const app = express();
 // ---- Data base ---
@@ -19,6 +21,11 @@ app.use(express.static('public'));
 
 // Routes
 app.use('/api/auth', require('./routes/auth.routes'));
+
+// front redirection
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public/index.html'));
+});
 
 // PORT const
 const PORT = process.env.PORT || 9000;
