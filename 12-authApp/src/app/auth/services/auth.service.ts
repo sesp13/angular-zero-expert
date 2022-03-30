@@ -18,6 +18,20 @@ export class AuthService {
     return { ...this._user };
   }
 
+  private setUser(res: AuthResponse): void {
+    this._user = {
+      name: res.name!,
+      uid: res.uid!,
+      email: res.email!,
+    };
+  }
+
+  private setUserAndToken(res: AuthResponse): void {
+    this.setUser(res);
+    // Save token
+    localStorage.setItem('token', res.token);
+  }
+
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {
@@ -25,12 +39,7 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${this.authUrl}`, body).pipe(
       tap((res) => {
         if (res.ok) {
-          this._user = {
-            name: res.name!,
-            uid: res.uid!,
-          };
-          // Save token
-          localStorage.setItem('token', res.token);
+          this.setUserAndToken(res);
         }
       }),
       map((res) => res.ok),
@@ -45,21 +54,31 @@ export class AuthService {
       localStorage.getItem('token') ?? ''
     );
     return this.http.get<AuthResponse>(url, { headers }).pipe(
-      map((result: AuthResponse) => {
+      map((res: AuthResponse) => {
         // Set user
-        if (result.ok) {
-          this._user = {
-            name: result.name!,
-            uid: result.uid!,
-          };
+        if (res.ok) {
+          this.setUser(res);
         }
-        return result.ok;
+        return res.ok;
       }),
-      catchError((result) => of(false))
+      catchError((res) => of(false))
     );
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('token');
+  }
+
+  // Returns a boolean with the operation result
+  register(user: User): Observable<any> {
+    return this.http.post<AuthResponse>(`${this.authUrl}/new`, user).pipe(
+      tap((res: AuthResponse) => {
+        if (res.ok) {
+          this.setUserAndToken(res);
+        }
+      }),
+      map((res: AuthResponse) => res.ok),
+      catchError((err) => of(err?.error?.msg))
+    );
   }
 }
