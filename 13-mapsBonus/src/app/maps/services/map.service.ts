@@ -1,5 +1,14 @@
 import { Injectable } from '@angular/core';
-import { LngLatBounds, LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
+import {
+  AnySourceData,
+  LngLatBounds,
+  LngLatLike,
+  Map,
+  Marker,
+  Popup,
+} from 'mapbox-gl';
+import { DirectionsApiClient } from '../api';
+import { DirectionsResponse, Route } from '../interfaces/directions.inteface';
 import { Feature } from '../interfaces/places.interface';
 
 @Injectable({
@@ -13,7 +22,7 @@ export class MapService {
     return this.map !== undefined;
   }
 
-  constructor() {}
+  constructor(private directionsApi: DirectionsApiClient) {}
 
   setMap(map: Map) {
     this.map = map;
@@ -68,6 +77,66 @@ export class MapService {
     });
     this.map.fitBounds(bounds, {
       padding: 200,
+    });
+  }
+
+  getRouteBetweenPoints(start: [number, number], end: [number, number]) {
+    this.directionsApi
+      .get<DirectionsResponse>(`/${start.join(',')};${end.join(',')}`)
+      .subscribe((res) => this.drawPolyLine(res.routes[0]));
+  }
+
+  private drawPolyLine(route: Route) {
+    // console.log({
+    //   kms: route.distance / 1000,
+    //   duration: route.duration / 60,
+    // });
+    if (!this.map) throw new Error('No map loaded');
+    const coords = route.geometry.coordinates;
+    const bounds = new LngLatBounds();
+    coords.forEach(([lng, lat]) => {
+      bounds.extend([lng, lat]);
+    });
+    // Set bounds
+    this.map.fitBounds(bounds, {
+      padding: 200,
+    });
+    // Polyne
+    const sourceData: AnySourceData = {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'LineString',
+              coordinates: coords,
+            },
+          },
+        ],
+      },
+    };
+
+    // Clean layer and source to only have 1 route
+    if (this.map.getLayer('RouteString')) {
+      this.map.removeLayer('RouteString');
+      this.map.removeSource('RouteString');
+    }
+
+    this.map.addSource('RouteString', sourceData);
+    this.map.addLayer({
+      id: 'RouteString',
+      type: 'line',
+      source: 'RouteString',
+      layout: {
+        'line-cap': 'round',
+      },
+      paint: {
+        'line-color': 'green',
+        'line-width': 3,
+      },
     });
   }
 }

@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class PlacesApiClient extends HttpClient {
+export class DirectionsApiClient extends HttpClient {
   public baseUrl: string =
     'https://api.mapbox.com/directions/v5/mapbox/driving';
 

@@ -28,4 +28,14 @@ export class SearchResultsComponent {
     this.selectedId = place.id;
     this.mapService.flyTo({ lng, lat });
   }
+
+  getDirections(place: Feature) {
+    if (!this.placesService.userLocation)
+      throw new Error('There is not user location');
+    const start = this.placesService.userLocation!;
+    const end = place.center as [number, number];
+    this.mapService.getRouteBetweenPoints(start, end);
+    // Clean places
+    this.placesService.cleanPlaces();
+  }
 }

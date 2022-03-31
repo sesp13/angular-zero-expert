@@ -61,4 +61,8 @@ export class PlacesService {
         this.isLoadingPlaces = false;
       });
   }
+
+  cleanPlaces() {
+    this.places = [];
+  }
 }
