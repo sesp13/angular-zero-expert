@@ -4,7 +4,7 @@ import { LngLatLike, Map } from 'mapbox-gl';
 @Injectable({
   providedIn: 'root',
 })
-export class MapsService {
+export class MapService {
   private map?: Map;
 
   get isMapReady() {

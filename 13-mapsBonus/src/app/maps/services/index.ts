@@ -1,2 +1,2 @@
-export { MapsService } from './maps.service';
+export { MapService } from './map.service';
 export { PlacesService } from './places.service';

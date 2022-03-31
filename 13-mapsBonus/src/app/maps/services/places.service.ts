@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { PlacesApiClient } from '../api/placesApiClient';
 import { Feature, PlacesResponse } from '../interfaces/places.interface';
 
@@ -37,6 +35,11 @@ export class PlacesService {
   }
 
   getPlacesByQuery(query: string) {
+    if (query.length == 0) {
+      this.places = [];
+      this.isLoadingPlaces = false;
+      return;
+    }
     if (!this.userLocation) throw Error('No user location provided');
     this.isLoadingPlaces = true;
     this.placesApi
@@ -45,8 +48,9 @@ export class PlacesService {
           proximity: this.userLocation?.join(','),
         },
       })
-      .subscribe((res) => {
-        console.log(res.features[0]);
+      .subscribe((res: PlacesResponse) => {
+        this.places = res.features;
+        this.isLoadingPlaces = false;
       });
   }
 }

@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Map, Popup, Marker } from 'mapbox-gl';
-import { MapsService, PlacesService } from '../../services';
+import { MapService, PlacesService } from '../../services';
 
 @Component({
   selector: 'app-map-view',
@@ -12,7 +12,7 @@ export class MapViewComponent implements AfterViewInit {
 
   constructor(
     private placesServices: PlacesService,
-    private mapService: MapsService
+    private mapService: MapService
   ) {}
 
   ngAfterViewInit(): void {

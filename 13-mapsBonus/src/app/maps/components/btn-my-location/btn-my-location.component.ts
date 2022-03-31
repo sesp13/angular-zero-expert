@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MapsService, PlacesService } from '../../services';
+import { Component } from '@angular/core';
+import { MapService, PlacesService } from '../../services';
 
 @Component({
   selector: 'app-btn-my-location',
@@ -8,7 +8,7 @@ import { MapsService, PlacesService } from '../../services';
 })
 export class BtnMyLocationComponent {
   constructor(
-    private mapService: MapsService,
+    private mapService: MapService,
     private placesService: PlacesService
   ) {}
 
