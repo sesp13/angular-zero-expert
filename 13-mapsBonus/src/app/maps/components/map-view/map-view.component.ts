@@ -2,10 +2,9 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  OnInit,
   ViewChild,
 } from '@angular/core';
-import mapboxgl from 'mapbox-gl';
+import { Map, Popup, Marker } from 'mapbox-gl';
 import { PlacesService } from '../../services';
 
 @Component({
@@ -20,11 +19,23 @@ export class MapViewComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     // Init map
-    new mapboxgl.Map({
+    const map = new Map({
       container: this.mapDivElement?.nativeElement, // container ID
       style: 'mapbox://styles/mapbox/streets-v11', // style URL
       center: this.placesServices.userLocation, // starting position [lng, lat]
       zoom: 14, // starting zoom
     });
+
+    const popup = new Popup().setHTML(`
+      <h6>Here I am </h6>
+      <span> I'm in this place of the world </h6>
+    `);
+
+    new Marker({
+      color: 'red',
+    })
+      .setLngLat(this.placesServices.userLocation!)
+      .setPopup(popup)
+      .addTo(map);
   }
 }
